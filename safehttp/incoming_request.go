@@ -32,6 +32,11 @@ func newIncomingRequest(req *http.Request) *IncomingRequest {
 	return &IncomingRequest{req: req, Header: newHeader(req.Header)}
 }
 
+// GetMethod TODO
+func (r *IncomingRequest) GetMethod() string {
+	return r.req.Method
+}
+
 // PostForm parses the form parameters provided in the body of a POST, PATCH or
 // PUT request that does not have Content-Type: multipart/form-data. It returns
 // the parsed form parameters as a Form object, if no error occurred. If a parsing

@@ -12,20 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package safehttp
+package xsrf_test
 
-// StatusCode TODO
-type StatusCode int
-
-const (
-	// Status200OK TODO
-	Status200OK StatusCode = 200
-	// Status500InternalServerError TODO
-	Status500InternalServerError = 500
-	// Status400BadRequest TODO
-	Status400BadRequest = 400
-	// Status401Unauthorized TODO
-	Status401Unauthorized = 401
-	// Status403Forbidden TODO
-	Status403Forbidden = 403
+import (
+	"github.com/google/go-safeweb/safehttp_test"
+	"testing"
 )
+
+func TestTokenValidation(t *testing.T) {
+
+}
+
+func TestFetchMetadataPolicy(t *testing.T) {
+
+}
