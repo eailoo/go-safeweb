@@ -67,13 +67,13 @@ func NewPlugin() Plugin {
 // response.
 func (p *Plugin) Before(w safehttp.ResponseWriter, r *safehttp.IncomingRequest) safehttp.Result {
 	if p.MaxAge < 0 {
-		return w.ServerError(safehttp.StatusInternalServerError, "Internal Server Error")
+		return w.ServerError(safehttp.StatusInternalServerError)
 	}
 
 	if !p.BehindProxy && r.TLS == nil {
 		u, err := url.Parse(r.URL.String())
 		if err != nil {
-			return w.ServerError(safehttp.StatusInternalServerError, "Internal Server Error")
+			return w.ServerError(safehttp.StatusInternalServerError)
 		}
 		u.Scheme = "https"
 		return w.Redirect(r, u.String(), safehttp.StatusMovedPermanently)
@@ -91,7 +91,7 @@ func (p *Plugin) Before(w safehttp.ResponseWriter, r *safehttp.IncomingRequest) 
 	h := w.Header()
 	if err := h.Set("Strict-Transport-Security", value.String()); err != nil {
 		// TODO(@mattiasgrenfeldt): Replace the response with an actual saferesponse somehow.
-		return w.ServerError(safehttp.StatusInternalServerError, "Internal Server Error")
+		return w.ServerError(safehttp.StatusInternalServerError)
 	}
 	// TODO: Implement header claiming.
 	h.MarkImmutable("Strict-Transport-Security")
